@@ -11,7 +11,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/export_flags.cmake)
 ############
 set(PROTO_DEFNS proto/aslam/common/id.proto)
 PROTOBUF_CATKIN_GENERATE_CPP2("proto" PROTO_SRCS PROTO_HDRS ${PROTO_DEFNS})
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 #############
 # LIBRARIES #
@@ -80,4 +79,5 @@ target_link_libraries(test_descriptor_utils ${catkin_LIBRARIES})
 # EXPORT #
 ##########
 cs_install()
-cs_export(CFG_EXTRAS detect_simd.cmake export_flags.cmake setup_openmp.cmake)
+cs_export(INCLUDE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/compiled_proto
+          CFG_EXTRAS detect_simd.cmake export_flags.cmake setup_openmp.cmake)
